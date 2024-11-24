@@ -6,10 +6,9 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
     service-url:
-      default-zone: http://host.docker.internal:8761/eureka
+      default-zone: http://eureka-service:8761/eureka/  # Use service name 'eureka-service' instead of localhost
   instance:
-    # hostname: gateway-service
-    instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    hostname: gateway-service
 
 spring:
   cloud:
@@ -25,6 +24,7 @@ spring:
               - DELETE
               - OPTIONS
             allowedHeaders: '*'
+            
       discovery:
         locator:
           enabled: true
