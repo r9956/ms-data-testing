@@ -1,8 +1,11 @@
 server:
   port: 8761
+
 eureka:
+  instance:
+    hostname: eureka-service  # Correctly sets the Eureka server hostname
   client:
-    fetch-registry: false
-    register-with-eureka: false
+    fetch-registry: false  # No need for the Eureka server to fetch registry
+    register-with-eureka: false  # Eureka server doesn't need to register itself
     service-url:
-      default-zone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      default-zone: http://${eureka.instance.hostname}:${server.port}/eureka/  # Eureka's self URL
