@@ -1,0 +1,52 @@
+server:
+  port: 8080
+  
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      default-zone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost
+
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:5173"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+      routes:
+        - id: attendance-service
+          uri: lb://attendance-service
+          predicates:
+            - Path=/attendance/**
+        - id: clock-service
+          uri: lb://clock-service
+          predicates:
+            - Path=/clock/**
+        - id: extraHours-service
+          uri: lb://extraHours-service
+          predicates:
+            - Path=/extraHours/**
+        - id: payroll-service
+          uri: lb://payroll-service
+          predicates:
+            - Path=/payroll/**
+        - id: report-service
+          uri: lb://report-service
+          predicates:
+            - Path=/report/**
