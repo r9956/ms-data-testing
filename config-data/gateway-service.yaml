@@ -8,7 +8,8 @@ eureka:
     service-url:
       default-zone: http://eureka-service:8761/eureka
   instance:
-    hostname: gateway-service
+    # hostname: gateway-service
+    instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 
 spring:
   cloud:
@@ -16,16 +17,14 @@ spring:
       globalcors:
         corsConfigurations:
           '[/**]':
-            allowedOrigins: 
-              - "http://localhost:5173"
-              - "http://frontend-service:5173"
+            allowedOrigins: '*'
             allowedMethods:
               - GET
               - POST
               - PUT
               - DELETE
               - OPTIONS
-            allowedHeaders: "*"
+            allowedHeaders: '*'
       discovery:
         locator:
           enabled: true
