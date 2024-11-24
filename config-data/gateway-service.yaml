@@ -6,9 +6,9 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
     service-url:
-      default-zone: http://localhost:8761/eureka
+      default-zone: http://eureka-service:8761/eureka
   instance:
-    hostname: localhost
+    hostname: gateway-service
 
 spring:
   cloud:
@@ -16,7 +16,9 @@ spring:
       globalcors:
         corsConfigurations:
           '[/**]':
-            allowedOrigins: "http://localhost:5173"
+            allowedOrigins: 
+              - "http://localhost:5173"
+              - "http://frontend-service:5173"
             allowedMethods:
               - GET
               - POST
