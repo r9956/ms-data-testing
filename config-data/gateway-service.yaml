@@ -6,7 +6,7 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
     service-url:
-      default-zone: http://eureka-service:8761/eureka/  # Use service name 'eureka-service' instead of localhost
+      defaultZone: http://eureka-service:8761/eureka/  # Use service name 'eureka-service' instead of localhost
   instance:
     hostname: gateway-service
 
