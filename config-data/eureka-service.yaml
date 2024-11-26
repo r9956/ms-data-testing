@@ -4,6 +4,7 @@ server:
 eureka:
   instance:
     hostname: eureka-service  # Correctly sets the Eureka server hostname
+    prefer-ip-address: true
   client:
     fetch-registry: false  # No need for the Eureka server to fetch registry
     register-with-eureka: false  # Eureka server doesn't need to register itself
